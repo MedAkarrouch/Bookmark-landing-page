@@ -4,6 +4,7 @@ function menu() {
   const logo = document.getElementById("logo");
   const btnOpen = document.getElementById("open");
   const btnClose = document.getElementById("close");
+  const header = document.querySelector(".header");
   btnOpen.addEventListener("click", (e) => {
     const headerHeight = document
       .querySelector(".header")
@@ -11,10 +12,16 @@ function menu() {
     menu.style.paddingTop = `${headerHeight + 10}px`;
     document.body.classList.add("toggle");
     logo.setAttribute("src", "images/logo-bookmarkCp.svg");
+    header.style.backgroundColor = "transparent";
+    header.style.boxShadow = "unset";
   });
   btnClose.addEventListener("click", (e) => {
     document.body.classList.remove("toggle");
     logo.setAttribute("src", "images/logo-bookmark.svg");
+    header.style.removeProperty("background-color");
+    header.style.removeProperty("box-shadow");
+    // header.style.backgroundColor = "rgba(#fff, 0.95)";
+    // header.style.boxShadow = "0 0.5rem 3.2rem rgba(#000, 0.1)";
   });
 }
 menu();
