@@ -104,3 +104,33 @@ function form() {
   });
 }
 form();
+// navbar
+function navbar() {
+  const heroSection = document.querySelector(".hero");
+  const observeHero = new IntersectionObserver(
+    (entries, observer) => {
+      const [entry] = entries;
+      const header = document.querySelector(".header");
+      const headerHeight = header.getBoundingClientRect().height;
+      console.log(headerHeight);
+      if (!entry.isIntersecting) {
+        header.classList.add("sticky");
+        entry.target.style.marginTop = `${headerHeight}px`;
+      } else {
+        header.classList.remove("sticky");
+        entry.target.style.marginTop = "0px";
+      }
+    },
+    {
+      root: null,
+      threshold: 0,
+      rootMargin: "-83px",
+    }
+  );
+  observeHero.observe(heroSection);
+  const links = document.querySelectorAll("a");
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => e.preventDefault());
+  });
+}
+navbar();
